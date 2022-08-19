@@ -1,0 +1,23 @@
+!pip install rake-nltk
+
+from gensim.summarization import summarize
+from rake_nltk import Rake
+
+import logging, nltk
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+nltk.download('stopwords')
+nltk.download('punkt')
+
+text = ""
+
+r = Rake()
+r.extract_keywords_from_text(text)
+
+print ('Input Text:')
+print (text)
+
+print ('Output Summary:')
+print (summarize(text))
+
+print ('Output Keywords:')
+print (r.get_ranked_phrases()[0:15])
